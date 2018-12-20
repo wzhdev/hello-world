@@ -31,13 +31,13 @@ spec:
 {
 	node(label) {
 		stage('Get a Maven Project') {
-			git 'http://gogs-gogs/xiaowu/hello-world.git'
+			git 'http://gogs-gogs/wzh/hello-world.git'
 			container('maven') {
 				sh 'mvn -B clean package'
 			}
 			container('docker') {
 				sh "docker build -t ${image} ."
-				sh "docker login harbor.tst.xiaowu.com -p 123456 -u admin"
+				sh "docker login harbor.wzh -p 123456 -u admin"
 				sh "docker push ${image}"
 			}
 		}

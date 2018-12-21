@@ -31,7 +31,7 @@ spec:
 {
 	node(label) {
 		stage('Get a Maven Project') {
-			git 'http://gogs-gogs/wzh/hello-world.git'
+			git 'https://github.com/wzhdev/hello-world.git'
 			container('maven') {
 				sh 'mvn -B clean package'
 			}

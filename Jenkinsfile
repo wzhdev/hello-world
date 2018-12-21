@@ -19,6 +19,10 @@ spec:
     volumeMounts:
     - name: dockersock
       mountPath: /var/run/docker.sock
+  - name: helm
+    image: wzhdev/helm
+    command: ['cat']
+    tty: true
   volumes:
   - name: dockersock
     hostPath:
@@ -39,6 +43,16 @@ spec:
 				sh "docker build -t ${image} ."
 				sh "docker login harbor.wzh -p 123456 -u admin"
 				sh "docker push ${image}"
+				sh "docker rmi ${image}"
+			}
+			container('helm') {
+				sh "helm repo add --password 123456 --username admin wzhdev https://harbor.wzh/chartrepo/wzhdev"
+				sh "mv charts hello-world"
+				sh "cd hello-world"
+				sh "helm package ."
+				sh "helm push hello-world-0.1.0.tgz wzhdev"
+				sh "helm repo update"
+				sh "helm install --name hello-world wzhdev/hello-world"
 			}
 		}
 	}

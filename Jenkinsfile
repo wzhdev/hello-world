@@ -1,5 +1,5 @@
 def label = "mypod-${UUID.randomUUID().toString()}"
-def image = "harbor.wzh/xiaowu/hello-world"
+def image = "harbor.wzh/wzhdev/hello-world"
 podTemplate(label: label, cloud: 'kubernetes', yaml: """
 apiVersion: v1
 kind: Pod

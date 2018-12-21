@@ -43,7 +43,6 @@ spec:
 				sh "docker build -t ${image} ."
 				sh "docker login harbor.wzh -p 123456 -u admin"
 				sh "docker push ${image}"
-				sh "docker rmi ${image}"
 			}
 			container('helm') {
 				sh "helm repo add --password 123456 --username admin wzhdev https://harbor.wzh/chartrepo/wzhdev"

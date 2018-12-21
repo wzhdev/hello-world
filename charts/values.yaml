@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: harbo.wzh/wzhdev/hello-world
+  repository: harbor.wzh/wzhdev/hello-world
   tag: latest
   pullPolicy: IfNotPresent
 service:

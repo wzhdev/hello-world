@@ -50,7 +50,7 @@ spec:
 				sh "mv charts hello-world"
 				sh "cd hello-world && helm package . && helm push hello-world-0.1.0.tgz wzhdev"
 				sh "helm repo update"
-				sh "helm install --name hello-world wzhdev/hello-world"
+				sh "helm install --name hello-world --namespace default wzhdev/hello-world"
 			}
 		}
 	}

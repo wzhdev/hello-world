@@ -1,5 +1,5 @@
 def label = "mypod-${UUID.randomUUID().toString()}"
-def image = "harbor.tst.xiaowu.com/xiaowu/hello-world"
+def image = "harbor.wzh/xiaowu/hello-world"
 podTemplate(label: label, cloud: 'kubernetes', yaml: """
 apiVersion: v1
 kind: Pod
@@ -31,7 +31,7 @@ spec:
 {
 	node(label) {
 		stage('Get a Maven Project') {
-			git 'https://github.com/wzhdev/hello-world.git'
+			git 'http://gogs-gogs/wzhdev/hello-world.git'
 			container('maven') {
 				sh 'mvn -B clean package'
 			}

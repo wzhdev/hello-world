@@ -19,7 +19,7 @@ ingress:
   labels: {}
   path: /
   hosts:
-    - hello-world.wzh
+    - app.wzh
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

@@ -47,7 +47,7 @@ spec:
 			container('helm') {
 				sh "helm repo add --password 123456 --username admin wzhdev https://harbor.wzh/chartrepo/wzhdev"
 				sh "mv charts hello-world"
-				sh "cd hello-world && helm package --save false . && helm push hello-world-0.1.0.tgz wzhdev"
+				sh "cd hello-world && helm package . && helm push hello-world-0.1.0.tgz wzhdev"
 				sh "helm repo update"
 				sh "helm install --name hello-world --namespace default wzhdev/hello-world"
 			}

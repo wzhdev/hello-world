@@ -35,11 +35,7 @@ spec:
         paths:
           - path: {{ $ingressPath }}
             backend:
-              {{- if .Values.service.name }}
-              serviceName: {{ .Values.service.name }}
-              {{- else }}
-              serviceName: {{ template "fullname" . }}
-              {{- end }}
+              serviceName: hello-world
               servicePort: {{ $servicePort }}
   {{- end }}
 {{- end }}

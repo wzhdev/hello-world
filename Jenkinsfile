@@ -1,5 +1,5 @@
 def label = "mypod-${UUID.randomUUID().toString()}"
-def image = "harbor.wzh/wzhdev/hello-world"
+def image = "docker.wzh/wzhdev/hello-world"
 podTemplate(label: label, cloud: 'kubernetes', yaml: """
 apiVersion: v1
 kind: Pod
@@ -41,15 +41,14 @@ spec:
 			}
 			container('docker') {
 				sh "docker build -t ${image} ."
-				sh "docker login harbor.wzh -p 123456 -u admin"
 				sh "docker push ${image}"
 			}
 			container('helm') {
-				sh "helm repo add --password 123456 --username admin wzhdev https://harbor.wzh/chartrepo/wzhdev"
+				sh "helm repo add chart https://chart.wzh"
 				sh "mv charts hello-world"
-				sh "cd hello-world && helm package . && helm push hello-world-0.1.0.tgz wzhdev"
+				sh "cd hello-world && helm package . && helm push hello-world-0.1.0.tgz chart"
 				sh "helm repo update"
-				sh "helm install --name hello-world --namespace default wzhdev/hello-world"
+				sh "helm install --name hello-world --namespace default chart/hello-world"
 			}
 		}
 	}
